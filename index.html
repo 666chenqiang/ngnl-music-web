@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080d10">
+<meta name="color-scheme" content="dark">
+<title>珍珠唱机</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app" id="app">
+  <div class="ambient" id="ambient" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#/home">珍珠<em>唱机</em></a>
+    <form class="searchbox" id="searchForm" autocomplete="off">
+      <span class="si" data-icon="search"></span>
+      <input id="searchInput" type="search" placeholder="搜索歌曲、歌手、歌单" enterkeyhint="search">
+      <button class="sgo" type="submit" aria-label="搜索">搜索</button>
+    </form>
+    <div class="top-actions">
+      <button class="iconbtn" data-act="route" data-route="queue" aria-label="播放队列"><span data-icon="queue"></span></button>
+      <button class="iconbtn" data-act="route" data-route="settings" aria-label="设置"><span data-icon="gear"></span></button>
+    </div>
+  </header>
+
+  <main class="stage" id="view" role="main"></main>
+
+  <nav class="dock" id="dock"></nav>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="sheet-root" id="sheetRoot"></div>
+
+<script src="demo-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
