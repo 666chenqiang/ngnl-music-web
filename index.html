@@ -3,26 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#080d10">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#F5F2ED">
+<meta name="color-scheme" content="light">
 <title>珍珠唱机</title>
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
 <div class="app" id="app">
-  <div class="ambient" id="ambient" aria-hidden="true"></div>
-
   <header class="topbar" id="topbar">
-    <a class="brand" href="#/home">珍珠<em>唱机</em></a>
     <form class="searchbox" id="searchForm" autocomplete="off">
       <span class="si" data-icon="search"></span>
-      <input id="searchInput" type="search" placeholder="搜索歌曲、歌手、歌单" enterkeyhint="search">
+      <input id="searchInput" type="search" placeholder="搜索歌曲、歌手" enterkeyhint="search">
       <button class="sgo" type="submit" aria-label="搜索">搜索</button>
+      <button class="smic" type="button" data-act="voice" aria-label="语音搜索"><span data-icon="mic"></span></button>
     </form>
-    <div class="top-actions">
-      <button class="iconbtn" data-act="route" data-route="queue" aria-label="播放队列"><span data-icon="queue"></span></button>
-      <button class="iconbtn" data-act="route" data-route="settings" aria-label="设置"><span data-icon="gear"></span></button>
-    </div>
+    <button class="tb voice" data-act="voice" aria-label="语音搜索"><span data-icon="mic"></span></button>
+    <button class="tb" data-act="route" data-route="settings" aria-label="设置"><span data-icon="gear"></span></button>
   </header>
 
   <main class="stage" id="view" role="main"></main>
