@@ -15,46 +15,63 @@
   }
 
   var songs = [
-    s(101, '夜航西飞', '陈鸿宇', '与荒野', 268),
-    s(102, '雨落长街', '房东的猫', '春生', 214),
-    s(103, '晚风告白', '颜人中', '晚安', 236),
-    s(104, '灯塔与船', '刘昊霖', '鱼干铺里', 245),
-    s(105, '雾中列车', '朴树', '猎户星座', 302),
-    s(106, '缓慢降落', '郭顶', '飞行器的执行周期', 279),
-    s(107, '光年之外的信', '岑宁儿', 'Nothing is Under Control', 251),
-    s(108, '午后三点', '万能青年旅店', '冀西南林路行', 341),
+    s(101, 'Super Star', 'S.H.E', '2013年 快乐2世代', 219),
+    s(102, '一个人', '普沛腾', '终极一班', 241),
+    s(103, '七秒钟的记忆', '徐良 & 孙羽幽', '七秒钟的记忆', 233),
+    s(104, '不只是朋友', '李玖哲', '不，完美', 256),
+    s(105, '你要的爱', '戴佩妮', '怎样', 248),
+    s(106, '匿名的好友', '杨宗纬', '原色', 262),
+    s(107, 'Always Online', '林俊杰', 'JJ陆', 212),
+    s(108, '后会无期', '汪苏泷', '万有引力', 236),
     s(109, '海岸线', '李志', '1701', 288),
     s(110, '旧磁带', '落日飞车', 'Cassa Nova', 232),
     s(111, '星河入梦', '房东的猫', '柔软', 224),
     s(112, '风起时', '毛不易', '小王', 259),
-    s(113, '城市褶皱', '草东没有派对', '丑奴儿', 246),
-    s(114, '半醒', '陈粒', '洄游', 233),
-    s(115, '盐和光', 'deca joins', '浴室', 271),
-    s(116, '无人接听', '告五人', '我肯定在几百年前就说过爱你', 262),
-    s(117, '海边的房间', '王喂马', '海边的房间', 238),
-    s(118, '低空飞行', '声音玩具', '劳动公园', 315),
-    s(119, '琥珀', '文雀', '迷路记', 287),
-    s(120, '月光旅人', '鲸鱼马戏团', '鲸鱼马戏团', 354)
+    s(113, 'Love Story', 'Taylor Swift', 'Fearless', 235),
+    s(114, 'A Thousand Miles', 'Vanessa Carlton', 'Be Not Nobody', 237),
+    s(115, 'Always Remember Us This Way', 'Lady Gaga', 'A Star Is Born', 210),
+    s(116, 'Call Me Maybe', 'Carly Rae Jepsen', 'Kiss', 193),
+    s(117, 'Havana', 'Camila Cabello', 'Camila', 217),
+    s(118, 'Attention', 'Charlie Puth', 'Voicenotes', 211),
+    s(119, 'Viva La Vida', 'Coldplay', 'Viva la Vida', 242),
+    s(120, 'Shape of You', 'Ed Sheeran', 'Divide', 233)
   ];
+  songs.forEach(function (x, i) {
+    if (i >= 1 && i <= 7) {
+      x.source = 'kuwo';
+      x.bitrate = 0;
+      x.key = 'kuwo|' + x.id;
+    }
+  });
+  songs[0].source = 'netease'; songs[0].bitrate = 320;
+  var pics = ['img/card-daily.jpg', 'img/card-rec1.jpg', 'img/card-rec3.jpg', 'img/card-rec2.jpg', 'img/card-rec1.jpg'];
+  songs.forEach(function (s, i) { if (i < 5) s.cover = pics[i]; });
+
+  var fmSong = {
+    id: 'fm-1', source: 'netease', name: 'In the Meadow',
+    artist: 'Brian Cran', album: 'Piano and Light',
+    cover: 'img/card-fm.jpg', duration: 173, bitrate: 320, key: 'netease|fm-1'
+  };
 
   var playlists = [
-    { id: 'pl-1', name: '深夜慢行', count: 24, cover: '', isDefault: true },
-    { id: 'pl-2', name: '通勤电波', count: 18, cover: '', isDefault: false },
-    { id: 'pl-3', name: '午后独处', count: 31, cover: '', isDefault: false },
-    { id: 'pl-4', name: '公路与海', count: 12, cover: '', isDefault: false }
+    { id: 'pl-1', name: '我喜欢的音乐', count: 6, cover: '', isDefault: true }
   ];
+  var playlistMeta = { 'pl-empty': { name: '我喜欢的音乐' } };
 
   window.NGNL_DEMO = {
     songs: songs,
     playlists: playlists,
+    playlistMeta: playlistMeta,
     favorites: songs.slice(0, 6),
     daily: songs.slice(0, 12),
-    fm: songs.slice(6, 12),
+    dailyCount: 30,
+    fm: [fmSong].concat(songs.slice(6, 11)),
     playlistSongs: {
-      'pl-1': songs.slice(0, 8),
-      'pl-2': songs.slice(4, 12),
-      'pl-3': songs.slice(8, 16),
-      'pl-4': songs.slice(12, 20)
+      'pl-1': songs.slice(0, 6),
+      'pl-2': songs.slice(4, 8),
+      'pl-3': songs.slice(6, 12),
+      'pl-4': songs.slice(0, 8),
+      'pl-empty': []
     },
     settings: {
       playQuality: 'exhigh',
@@ -64,7 +81,7 @@
       downloadDir: '/storage/emulated/0/Music/珍珠唱机',
       downloadConcurrency: 1,
       sources: ['netease', 'kuwo', 'qq'],
-      priority: ['netease', 'kuwo', 'qq'],
+      priority: ['kuwo', 'netease', 'qq', 'kugou'],
       commonSources: ['netease', 'kuwo'],
       allSources: ['netease', 'kuwo', 'qq', 'kugou', 'migu', 'bilibili'],
       extSourceNames: {}
